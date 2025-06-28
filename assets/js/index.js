@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Js cargado');
     const btnCreate = document.querySelector("#btnCreate");
     const btnLogout = document.querySelector('.btn-logout');
     const formCreate = document.querySelector('#form-create');
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnClose = document.querySelector(".btn-close");
 
     btnCreate.addEventListener("click", () => {
-        // console.log('Hice click', modalCreate);
         modalCreate.classList.toggle('d-none');
     });
 
@@ -29,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const id = e.target.dataset.id;
             if (!id) return;
 
-            const response = await fetch(`index.php?id=${id}`, {
+            const response = await fetch(`Api.php?id=${id}`, {
                 method: 'GET'
             });
 
@@ -79,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const id = target.dataset.iduser;
                 if (!id) return;
         
-                const response = await fetch(`index.php?action=delete&id=${id}`, {
+                const response = await fetch(`Api.php?action=delete&id=${id}`, {
                     method: 'GET'
                 });
         

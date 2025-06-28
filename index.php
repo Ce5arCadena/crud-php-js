@@ -3,54 +3,7 @@
     if (!isset($_SESSION['user'])) {
         header('Location: login.php');
         exit;
-    }
-
-    include_once "./Operations.php";
-
-    $showCreate = false;
-    $msgAlert = "";
-    $operations = new Operations();
-
-    if (isset($_GET['id']) && !isset($_GET['action'])) {
-        $user = $operations->getById($_GET['id']);
-        if ($user) {
-            header('Content-Type: application/json');
-            echo $user;
-            exit;
-        }
-    }
-
-    if (isset($_GET['id']) && isset($_GET['action'])) { 
-        $deleteUser = $operations->delete($_GET['id']);
-        if ($deleteUser) {
-            $msgAlert = "Usuario eliminado.";
-            header('Content-Type: application/json');
-            echo $deleteUser;
-            exit;
-        }
-    }
-
-    if ($_POST) {
-        if (isset($_POST['id']) && $_POST['id'] === "") {
-            $saveUser = $operations->save($_POST);
-            if ($saveUser) {
-                $msgAlert = "Registro guardado.";
-
-                header('Content-Type: application/json');
-                echo $saveUser;
-                exit;
-            }
-        } elseif (isset($_POST['id']) && $_POST['id'] !== "") {
-            $updateUser = $operations->update($_POST);
-            if ($updateUser) {
-                $msgAlert = "Registro actualizado.";
-
-                header('Content-Type: application/json');
-                echo $updateUser;
-                exit;
-            }
-        }
-    }
+    }  
 ?>
 
 <!DOCTYPE html>
@@ -68,15 +21,6 @@
             <h1 class="text-center">Bienvenido, <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : "Usuario" ?></h1>
             <button class="btn btn-info btn-logout">Salir</button>
         </div>
-        <?php if (!empty($msgAlert)) : ?>
-            <div class="row justify-content-center">
-                <div class="col-8">
-                    <div class="alert alert-success text-center" role="alert">
-                        <?= htmlspecialchars($msgAlert) ?>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
     </header>
     <main class="position-relative">
         <section>
@@ -90,7 +34,6 @@
                 </div>
             </div>
         </section>
-
 
         <!-- Modal de Creación -->
         <?php include_once "Create.php"; ?>

@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Botón de Editar
     const btnEdit = document.querySelectorAll(".btn-edit");
+
     // Mensajes de error
     const errorName = document.querySelector('#nameHelp');
     const genderError = document.querySelector('#genderHelp');
@@ -24,7 +25,7 @@ window.addEventListener('DOMContentLoaded', () => {
         toggleError(genderError, !gender ? 'El genero es requerido' : '');
         toggleError(lastNameError, !lastName ? 'El apellido es requerido' : '');
 
-        if (!name || !lastName || !gender) return; 
+        if (!name || !lastName || !gender) return;
 
         const isEdit = form.get('id') ? true : false;
         await saveUser(form, isEdit);
@@ -88,7 +89,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const saveUser = async (body, isEdit) => {
         try {
-            const response = await fetch('index.php', {
+            const response = await fetch('Api.php', {
                 method: 'POST',
                 body
             });
@@ -133,7 +134,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const getUser = async(id) => {
         try {
-            const response = await fetch(`index.php?id=${id}`, {
+            const response = await fetch(`Api.php?id=${id}`, {
                 method: 'GET'
             });
 
