@@ -2,6 +2,8 @@
 
 Este proyecto es una aplicación web básica que permite **Crear, Leer, Actualizar y Eliminar (CRUD)** registros en una base de datos MySQL usando PHP como backend y JavaScript para mejorar la interacción en el frontend.
 
+# No tiene autenticación como tal❌, solo pide user y password para repasar sesiones.
+
 ---
 
 ## 🧰 Tecnologías usadas
